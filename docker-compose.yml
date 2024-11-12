@@ -1,0 +1,26 @@
+services:
+    marzban:
+        image: gozargah/marzban:latest
+        container_name: marzban
+        restart: always
+        env_file: .env
+        network_mode: host
+        volumes:
+            - /var/lib/marzban:/var/lib/marzban
+        depends_on:
+            - mariadb
+    mariadb:
+        image: mariadb:lts
+        container_name: mariadb
+        restart: always
+        env_file: .env
+        network_mode: host
+        command:
+            - --bind-address=127.0.0.1
+            - --character_set_server=utf8mb4
+            - --collation_server=utf8mb4_unicode_ci
+            - --host-cache-size=0
+            - --innodb-open-files=1024
+            - --innodb-buffer-pool-size=268435456
+        volumes:
+            - /var/lib/marzban/mariadb:/var/lib/mysql
