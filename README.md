@@ -7,12 +7,12 @@ sudo apt update && sudo apt dist-upgrade
 Register the PGP key:
 ```
 wget -qO - https://dl.xanmod.org/archive.key \
-    | sudo gpg --dearmor -vo /usr/share/keyrings/xanmod-archive-keyring.gpg
+  | sudo gpg --dearmor -vo /usr/share/keyrings/xanmod-archive-keyring.gpg
 ```
 Add the repository:
 ```
 echo 'deb [signed-by=/usr/share/keyrings/xanmod-archive-keyring.gpg] http://deb.xanmod.org releases main' \
-    | sudo tee /etc/apt/sources.list.d/xanmod-release.list
+  | sudo tee /etc/apt/sources.list.d/xanmod-release.list
 ```
 Check platform compatibility:
 ```
@@ -117,6 +117,23 @@ sudo certbot certonly \
   -d *.yourdomain.com \
   -n --agree-tos --no-eff-email -m your@email.com
 ```
+### Configure Cloudflare
+Add DNS records:
+```
+A  @        yourserverip  Proxied
+A  reality  yourserverip  DNS only
+```
+Configure encryption mode:
+```
+Full
+Enable encryption end-to-end. Use this mode when your origin server supports
+SSL certification but does not use a valid, publicly trusted certificate.
+```
+Add origin rule:
+```
+Hostname equals yourdomain.com
+Rewrite to 8443
+```
 ### Install Nginx
 Install the prerequisites:
 ```
@@ -125,18 +142,18 @@ sudo apt install curl gnupg2 ca-certificates lsb-release ubuntu-keyring
 Import an official nginx signing key:
 ```
 curl https://nginx.org/keys/nginx_signing.key | gpg --dearmor \
-    | sudo tee /usr/share/keyrings/nginx-archive-keyring.gpg >/dev/null
+  | sudo tee /usr/share/keyrings/nginx-archive-keyring.gpg >/dev/null
 ```
 Set up repository for nginx packages:
 ```
 echo "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
 http://nginx.org/packages/mainline/ubuntu `lsb_release -cs` nginx" \
-    | sudo tee /etc/apt/sources.list.d/nginx.list
+  | sudo tee /etc/apt/sources.list.d/nginx.list
 ```
 Set up repository pinning: 
 ```
 echo -e "Package: *\nPin: origin nginx.org\nPin: release o=nginx\nPin-Priority: 900\n" \
-    | sudo tee /etc/apt/preferences.d/99nginx
+  | sudo tee /etc/apt/preferences.d/99nginx
 ```
 Install nginx
 ```
@@ -157,7 +174,11 @@ sudo nginx -t
 ```
 Enable nginx service:
 ```
-sudo systemctl enable --now nginx
+sudo systemctl enable nginx
+```
+Restart nginx service:
+```
+sudo systemctl restart nginx
 ```
 ### Install Marzban
 Run the installation script:
