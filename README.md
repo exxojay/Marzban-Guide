@@ -52,7 +52,7 @@ Load the settings:
 sudo sysctl -p
 ```
 ### Install UFW
-Install ufw package:
+Install ufw:
 ```
 sudo apt install ufw
 ```
