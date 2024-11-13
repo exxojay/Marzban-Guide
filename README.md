@@ -3,6 +3,15 @@
 ```
 sudo apt update && sudo apt dist-upgrade
 ```
+### Clone Repository
+Install git:
+```
+sudo apt install git
+```
+Clone the repository:
+```
+git clone https://github.com/strohsnow/Marzban-Guide /path/to/Marzban-Guide
+```
 ### Install XanMod Kernel
 Register the PGP key:
 ```
