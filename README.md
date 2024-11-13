@@ -227,6 +227,10 @@ Add dashboard admin user:
 ```
 sudo marzban cli admin create --sudo
 ```
+Login into the dashboard
+```
+https://yourdomain.com/SECRET_DASHBOARD_PATH
+```
 ### Configure Xray
 Copy xray configuration file:
 ```
