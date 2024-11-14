@@ -14,7 +14,8 @@
     "inbounds": [
         {
             "tag": "reality",
-            "port": 443,
+            "listen": "127.0.0.1",
+            "port": 8443,
             "protocol": "vless",
             "settings": {
                 "clients": [],
@@ -22,13 +23,16 @@
             },
             "streamSettings": {
                 "network": "raw",
+                "rawSettings": {
+                    "acceptProxyProtocol": true
+                },
                 "security": "reality",
                 "realitySettings": {
                     "show": false,
                     "target": 7443,
                     "xver": 2,
                     "serverNames": [
-                        "reality.yourdomain.com"
+                        "yourdomain.com"
                     ],
                     "privateKey": "YOUR_PRIVATE_KEY",
                     "shortIds": [
