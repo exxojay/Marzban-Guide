@@ -102,7 +102,7 @@ Issue a wildcard certificate:
 sudo certbot certonly \
   --dns-cloudflare \
   --dns-cloudflare-credentials /path/to/cloudflare.ini \
-  -d *.yourdomain.com \
+  -d yourdomain.com -d *.yourdomain.com \
   -n --agree-tos --no-eff-email -m your@email.com
 ```
 ### Install Marzban
