@@ -39,13 +39,13 @@ Probe all modules:
 ```
 sudo depmod -a
 ```
-Change the queuing discipline:
-```
-echo "net.core.default_qdisc = fq" | sudo tee -a /etc/sysctl.conf
-```
 Enable BBR:
 ```
-echo "net.ipv4.tcp_congestion_control = bbr" | sudo tee -a /etc/sysctl.conf
+sudo nano /etc/sysctl.conf
+```
+```
+net.core.default_qdisc = fq
+net.ipv4.tcp_congestion_control = bbr
 ```
 Load the settings:
 ```
@@ -72,31 +72,10 @@ Enable UFW:
 ```
 sudo ufw enable
 ```
-Allow Cloudflare IPs:
+### Configure Cloudflare
+Add DNS record:
 ```
-sudo nano /path/to/cloudflare-ufw.sh
-```
-```sh
-#!/bin/sh
-for cfip in $(curl -sw '\n' https://www.cloudflare.com/ips-v{4,6}); do
-    ufw allow from "$cfip" to any port 8443 comment 'Cloudflare'
-done
-ufw reload > /dev/null
-```
-Make the script executable:
-```
-sudo chmod +x /path/to/cloudflare-ufw.sh
-```
-Run the script:
-```
-sudo /path/to/cloudflare-ufw.sh
-```
-Add a cronjob to run the script weekly:
-```
-sudo crontab -e
-```
-```
-0 0 * * 1 /path/to/cloudflare-ufw.sh > /dev/null 2>&1
+A  @  yourserverip  Proxied
 ```
 ### Issue SSL Certificates
 Install certbot:
@@ -126,69 +105,6 @@ sudo certbot certonly \
   -d *.yourdomain.com \
   -n --agree-tos --no-eff-email -m your@email.com
 ```
-### Configure Cloudflare
-Add DNS records:
-```
-A  @        yourserverip  Proxied
-A  reality  yourserverip  DNS only
-```
-Configure encryption mode:
-```
-Full
-Enable encryption end-to-end. Use this mode when your origin server supports
-SSL certification but does not use a valid, publicly trusted certificate.
-```
-Add origin rule:
-```
-Hostname equals yourdomain.com
-Rewrite to 8443
-```
-### Install Nginx
-Install the prerequisites:
-```
-sudo apt install curl gnupg2 ca-certificates lsb-release ubuntu-keyring
-```
-Import an official nginx signing key:
-```
-curl https://nginx.org/keys/nginx_signing.key | gpg --dearmor \
-  | sudo tee /usr/share/keyrings/nginx-archive-keyring.gpg >/dev/null
-```
-Set up repository for nginx packages:
-```
-echo "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
-http://nginx.org/packages/mainline/ubuntu `lsb_release -cs` nginx" \
-  | sudo tee /etc/apt/sources.list.d/nginx.list
-```
-Set up repository pinning: 
-```
-echo -e "Package: *\nPin: origin nginx.org\nPin: release o=nginx\nPin-Priority: 900\n" \
-  | sudo tee /etc/apt/preferences.d/99nginx
-```
-Install nginx
-```
-sudo apt update && sudo apt install nginx
-```
-### Configure Nginx
-Copy nginx configuration file:
-```
-sudo cp /path/to/Marzban-Guide/nginx.conf /etc/nginx/nginx.conf
-```
-Adjust nginx configuration:
-```
-sudo nano /etc/nginx/nginx.conf
-```
-Test the configuration:
-```
-sudo nginx -t
-```
-Enable nginx service:
-```
-sudo systemctl enable nginx
-```
-Restart nginx service:
-```
-sudo systemctl restart nginx
-```
 ### Install Marzban
 Run the installation script:
 ```
@@ -199,10 +115,23 @@ Update to the latest core:
 ```
 sudo marzban core-update
 ```
-Copy docker-compose file:
+Copy docker-compose.yml file:
 ```
 sudo cp /path/to/Marzban-Guide/docker-compose.yml /opt/marzban/docker-compose.yml
 ```
+Copy nginx.conf file:
+```
+sudo cp /path/to/Marzban-Guide/nginx.conf /opt/marzban/nginx.conf
+```
+Adjust nginx configuration:
+```
+sudo nano /opt/marzban/nginx.conf
+```
+https://github.com/strohsnow/Marzban-Guide/blob/4f34bc3e0f6fed9d0343f0eb21b29ae84097df10/nginx.conf#L12
+https://github.com/strohsnow/Marzban-Guide/blob/4f34bc3e0f6fed9d0343f0eb21b29ae84097df10/nginx.conf#L64
+https://github.com/strohsnow/Marzban-Guide/blob/4f34bc3e0f6fed9d0343f0eb21b29ae84097df10/nginx.conf#L66-L67
+https://github.com/strohsnow/Marzban-Guide/blob/4f34bc3e0f6fed9d0343f0eb21b29ae84097df10/nginx.conf#L79
+https://github.com/strohsnow/Marzban-Guide/blob/4f34bc3e0f6fed9d0343f0eb21b29ae84097df10/nginx.conf#L82
 Adjust marzban environment variables:
 ```
 sudo nano /opt/marzban/.env
@@ -232,7 +161,7 @@ Login into the dashboard
 https://yourdomain.com/SECRET_DASHBOARD_PATH
 ```
 ### Configure Xray
-Copy xray configuration file:
+Copy xray_config.json file:
 ```
 sudo cp /path/to/Marzban-Guide/xray_config.json /var/lib/marzban/xray_config.json
 ```
@@ -244,6 +173,8 @@ Adjust xray configuration:
 ```
 sudo nano /var/lib/marzban/xray_config.json
 ```
+https://github.com/strohsnow/Marzban-Guide/blob/4f34bc3e0f6fed9d0343f0eb21b29ae84097df10/xray_config.json#L35
+https://github.com/strohsnow/Marzban-Guide/blob/4f34bc3e0f6fed9d0343f0eb21b29ae84097df10/xray_config.json#L37
 Restart marzban:
 ```
 sudo marzban restart
