@@ -51,10 +51,6 @@ Allow SSH:
 ```
 sudo ufw allow ssh comment 'SSH'
 ```
-Allow HTTP:
-```
-sudo ufw allow http comment 'HTTP'
-```
 Allow HTTPS:
 ```
 sudo ufw allow https comment 'HTTPS'
@@ -127,11 +123,10 @@ Adjust Nginx configuration:
 ```
 sudo nano /opt/marzban/nginx.conf
 ```
-https://github.com/strohsnow/Marzban-Guide/blob/4f34bc3e0f6fed9d0343f0eb21b29ae84097df10/nginx.conf#L12
-https://github.com/strohsnow/Marzban-Guide/blob/4f34bc3e0f6fed9d0343f0eb21b29ae84097df10/nginx.conf#L64
-https://github.com/strohsnow/Marzban-Guide/blob/4f34bc3e0f6fed9d0343f0eb21b29ae84097df10/nginx.conf#L66-L67
-https://github.com/strohsnow/Marzban-Guide/blob/4f34bc3e0f6fed9d0343f0eb21b29ae84097df10/nginx.conf#L79
-https://github.com/strohsnow/Marzban-Guide/blob/4f34bc3e0f6fed9d0343f0eb21b29ae84097df10/nginx.conf#L82
+https://github.com/strohsnow/Marzban-Guide/blob/2058b4708a192124a7eba658a07e663aa52c6e06/nginx.conf#L39
+https://github.com/strohsnow/Marzban-Guide/blob/2058b4708a192124a7eba658a07e663aa52c6e06/nginx.conf#L41-L42
+https://github.com/strohsnow/Marzban-Guide/blob/2058b4708a192124a7eba658a07e663aa52c6e06/nginx.conf#L54
+https://github.com/strohsnow/Marzban-Guide/blob/2058b4708a192124a7eba658a07e663aa52c6e06/nginx.conf#L57
 Adjust Marzban environment variables:
 ```
 sudo nano /opt/marzban/.env
@@ -158,8 +153,8 @@ Adjust Xray configuration:
 ```
 sudo nano /var/lib/marzban/xray_config.json
 ```
-https://github.com/strohsnow/Marzban-Guide/blob/4f34bc3e0f6fed9d0343f0eb21b29ae84097df10/xray_config.json#L35
-https://github.com/strohsnow/Marzban-Guide/blob/4f34bc3e0f6fed9d0343f0eb21b29ae84097df10/xray_config.json#L37
+https://github.com/strohsnow/Marzban-Guide/blob/2058b4708a192124a7eba658a07e663aa52c6e06/xray_config.json#L29
+https://github.com/strohsnow/Marzban-Guide/blob/2058b4708a192124a7eba658a07e663aa52c6e06/xray_config.json#L31
 Restart Marzban:
 ```
 sudo marzban restart
