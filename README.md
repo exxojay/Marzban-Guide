@@ -1,8 +1,4 @@
 # Marzban-Guide
-### Update System
-```
-sudo apt update && sudo apt dist-upgrade
-```
 ### Install XanMod Kernel
 Register the PGP key:
 ```
@@ -20,7 +16,7 @@ wget -qO - https://dl.xanmod.org/check_x86-64_psabi.sh | awk -f -
 ```
 Install the kernel:
 ```
-sudo apt update && sudo apt install linux-xanmod-x64v3
+sudo apt update && sudo apt dist-upgrade && sudo apt install linux-xanmod-x64v3
 ```
 Reboot to switch the kernel:
 ```
