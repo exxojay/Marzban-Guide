@@ -1,9 +1,7 @@
 {
     "log": {
-        "loglevel": "warning",
         "access": "/var/lib/marzban/access.log",
-        "error": "/var/lib/marzban/error.log",
-        "dnsLog": true
+        "error": "/var/lib/marzban/error.log"
     },
     "dns": {
         "servers": [
@@ -14,8 +12,7 @@
     "inbounds": [
         {
             "tag": "reality",
-            "listen": "127.0.0.1",
-            "port": 8443,
+            "port": 443,
             "protocol": "vless",
             "settings": {
                 "clients": [],
@@ -23,14 +20,11 @@
             },
             "streamSettings": {
                 "network": "raw",
-                "rawSettings": {
-                    "acceptProxyProtocol": true
-                },
                 "security": "reality",
                 "realitySettings": {
                     "show": false,
-                    "target": 7443,
-                    "xver": 2,
+                    "target": 8443,
+                    "xver": 1,
                     "serverNames": [
                         "yourdomain.com"
                     ],
