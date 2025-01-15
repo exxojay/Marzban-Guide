@@ -61,6 +61,18 @@
             "settings": {
                 "nonIPQuery": "skip"
             }
+        },
+        {
+            "tag": "warp",
+            "protocol": "socks",
+            "settings": {
+                "servers": [
+                    {
+                        "address": "127.0.0.1",
+                        "port": 40000
+                    }
+                ]
+            }
         }
     ],
     "routing": {
@@ -92,6 +104,20 @@
                 "outboundTag": "dns-out",
                 "network": "tcp,udp",
                 "port": 53
+            },
+            {
+                "type": "field",
+                "outboundTag": "warp",
+                "ip": [
+                    "geoip:ru"
+                ]
+            },
+            {
+                "type": "field",
+                "outboundTag": "warp",
+                "domain": [
+                    "geosite:category-ru"
+                ]
             }
         ]
     }
