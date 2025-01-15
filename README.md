@@ -151,7 +151,7 @@ sudo nano /var/lib/marzban/xray_config.json
 ```
 https://github.com/strohsnow/Marzban-Guide/blob/2058b4708a192124a7eba658a07e663aa52c6e06/xray_config.json#L29
 https://github.com/strohsnow/Marzban-Guide/blob/2058b4708a192124a7eba658a07e663aa52c6e06/xray_config.json#L31
-### Configure Warp
+### Install WARP
 Get WARP+ license (optional):
 ```
 https://t.me/warpplus
