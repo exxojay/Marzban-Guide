@@ -7,7 +7,8 @@
         "servers": [
             "tcp+local://1.1.1.1",
             "tcp+local://1.0.0.1"
-        ]
+        ],
+        "disableCache": true
     },
     "inbounds": [
         {
