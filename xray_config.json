@@ -25,7 +25,7 @@
                 "realitySettings": {
                     "show": false,
                     "target": 8443,
-                    "xver": 1,
+                    "xver": 2,
                     "serverNames": [
                         "yourdomain.com"
                     ],
