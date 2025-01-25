@@ -1,4 +1,13 @@
 # Marzban-Guide
+### Clone Repository
+Install git:
+```
+sudo apt install -y git
+```
+Clone the repository:
+```
+git clone https://github.com/strohsnow/Marzban-Guide ~/Marzban-Guide
+```
 ### Install XanMod Kernel
 Register the PGP key:
 ```
@@ -41,7 +50,15 @@ sudo sysctl -p
 ### Install UFW
 Install ufw:
 ```
-sudo apt install ufw
+sudo apt install -y ufw
+```
+Deny incoming:
+```
+sudo ufw default deny incoming
+```
+Allow outgoing:
+```
+sudo ufw default allow outgoing
 ```
 Allow SSH:
 ```
@@ -59,10 +76,23 @@ Enable UFW:
 ```
 sudo ufw enable
 ```
+### Allow Cloudflare IPs
+Run the script:
+```
+sudo bash ~/Marzban-Guide/cloudflare-ufw.sh
+```
+Add a cron job:
+```
+sudo crontab -e
+```
+```
+0 0 * * 1 /bin/bash /path/to/Marzban-Guide/cloudflare-ufw.sh > /dev/null 2>&1
+```
 ### Configure Cloudflare
 Add DNS record:
 ```
-A  @  yourserveripv4  DNS only
+A        @  server_ipv4  Proxied
+A  reality  server_ipv4  DNS Only
 ```
 ### Issue SSL Certificates
 Install certbot:
@@ -92,21 +122,20 @@ sudo certbot certonly \
   -d yourdomain.com -d *.yourdomain.com \
   -n --agree-tos --no-eff-email -m your@email.com
 ```
+### Install WARP
+Get WARP+ license (optional):
+```
+https://t.me/warpplus
+```
+Install WARP:
+```
+cd && bash <(curl -fsSL https://gitlab.com/fscarmen/warp/-/raw/main/menu.sh) w
+```
 ### Install Marzban
 Run the installation script:
 ```
 sudo bash -c "$(curl -sL https://github.com/Gozargah/Marzban-scripts/raw/master/marzban.sh)" @ install --database mariadb
 ```
-### Clone Repository
-Install git:
-```
-sudo apt install git
-```
-Clone the repository:
-```
-git clone https://github.com/strohsnow/Marzban-Guide ~/Marzban-Guide
-```
-### Configure Marzban
 Update to the latest core:
 ```
 sudo marzban core-update
@@ -123,10 +152,7 @@ Adjust Nginx configuration:
 ```
 sudo nano /opt/marzban/nginx.conf
 ```
-https://github.com/strohsnow/Marzban-Guide/blob/2058b4708a192124a7eba658a07e663aa52c6e06/nginx.conf#L39
-https://github.com/strohsnow/Marzban-Guide/blob/2058b4708a192124a7eba658a07e663aa52c6e06/nginx.conf#L41-L42
-https://github.com/strohsnow/Marzban-Guide/blob/2058b4708a192124a7eba658a07e663aa52c6e06/nginx.conf#L54
-https://github.com/strohsnow/Marzban-Guide/blob/2058b4708a192124a7eba658a07e663aa52c6e06/nginx.conf#L57
+
 Adjust Marzban environment variables:
 ```
 sudo nano /opt/marzban/.env
@@ -153,18 +179,8 @@ Adjust Xray configuration:
 ```
 sudo nano /var/lib/marzban/xray_config.json
 ```
-https://github.com/strohsnow/Marzban-Guide/blob/2058b4708a192124a7eba658a07e663aa52c6e06/xray_config.json#L29
-https://github.com/strohsnow/Marzban-Guide/blob/2058b4708a192124a7eba658a07e663aa52c6e06/xray_config.json#L31
-### Install WARP
-Get WARP+ license (optional):
-```
-https://t.me/warpplus
-```
-Install WARP:
-```
-cd && bash <(curl -fsSL https://gitlab.com/fscarmen/warp/-/raw/main/menu.sh) w
-```
-### Final
+
+### Configure Marzban
 Restart Marzban:
 ```
 sudo marzban restart
@@ -173,7 +189,13 @@ Add dashboard admin user:
 ```
 sudo marzban cli admin create --sudo
 ```
-Login into the dashboard
+Log into the dashboard:
 ```
 https://yourdomain.com/SECRET_DASHBOARD_PATH
+```
+Adjust host settings:
+```
+reality
+address: server_ipv4
+port: 443
 ```
