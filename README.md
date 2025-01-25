@@ -152,7 +152,10 @@ Adjust Nginx configuration:
 ```
 sudo nano /opt/marzban/nginx.conf
 ```
-
+https://github.com/strohsnow/Marzban-Guide/blob/334024c41c33d3b63f38fb449ab48a1b7b7cf476/nginx.conf#L34
+https://github.com/strohsnow/Marzban-Guide/blob/334024c41c33d3b63f38fb449ab48a1b7b7cf476/nginx.conf#L36
+https://github.com/strohsnow/Marzban-Guide/blob/334024c41c33d3b63f38fb449ab48a1b7b7cf476/nginx.conf#L62-L63
+https://github.com/strohsnow/Marzban-Guide/blob/334024c41c33d3b63f38fb449ab48a1b7b7cf476/nginx.conf#L77
 Adjust Marzban environment variables:
 ```
 sudo nano /opt/marzban/.env
@@ -179,7 +182,8 @@ Adjust Xray configuration:
 ```
 sudo nano /var/lib/marzban/xray_config.json
 ```
-
+https://github.com/strohsnow/Marzban-Guide/blob/334024c41c33d3b63f38fb449ab48a1b7b7cf476/xray_config.json#L30
+https://github.com/strohsnow/Marzban-Guide/blob/334024c41c33d3b63f38fb449ab48a1b7b7cf476/xray_config.json#L32
 ### Configure Marzban
 Restart Marzban:
 ```
