@@ -199,7 +199,7 @@ https://yourdomain.com/SECRET_DASHBOARD_PATH
 ```
 Adjust host settings:
 ```
-reality
-address: server_ipv4
-port: 443
+Host: reality
+Address: server_ipv4
+Port: 443
 ```
