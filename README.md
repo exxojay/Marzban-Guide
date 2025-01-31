@@ -197,9 +197,3 @@ Log into the dashboard:
 ```
 https://yourdomain.com/SECRET_DASHBOARD_PATH
 ```
-Adjust host settings:
-```
-Host: reality
-Address: server_ipv4
-Port: 443
-```
