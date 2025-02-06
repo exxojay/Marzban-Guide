@@ -94,6 +94,12 @@ Add DNS record:
 A        @  server_ipv4  Proxied
 A  reality  server_ipv4  DNS Only
 ```
+Add Origin Rule:
+```
+Rule name: Marzban
+Custom filter expression: Hostname  equals  yourdomain.com
+Destination port: Rewrite to...  8443
+```
 ### Issue SSL Certificates
 Install certbot:
 ```
