@@ -135,7 +135,7 @@ https://t.me/warpplus
 ```
 Install WARP:
 ```
-cd && sudo bash <(curl -fsSL https://gitlab.com/fscarmen/warp/-/raw/main/menu.sh) w
+cd && wget -N https://gitlab.com/fscarmen/warp/-/raw/main/menu.sh && bash menu.sh w
 ```
 ### Install Marzban
 Run the installation script:
